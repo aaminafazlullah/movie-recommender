@@ -32,8 +32,13 @@ if st.session_state.trigger_recommend:
                 col1, col2 = st.columns([1, 3])
 
                 with col1:
-                    st.image(details['poster'], width=120)
+                    poster_url = details['poster']
+                    default_url = "https://via.placeholder.com/120x180.png?text=No+Image"
 
+                    if poster_url and poster_url != "N/A":
+                        st.image(poster_url, width=120)
+                    else:
+                        st.image(default_url, width=120)
                 with col2:
                     st.markdown(f"### 🎬 [{details['title']}]({imdb_url})", unsafe_allow_html=True)
                     st.write(f"⭐ **IMDb Rating:** {details['rating']}")
